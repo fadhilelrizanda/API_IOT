@@ -1,20 +1,33 @@
-// index.js
+const routes = require("./routes/routes");
+const chicken = require("./routes/chicken");
 const express = require("express");
+const mongoose = require("mongoose");
+// const mongoString = process.env.DATABASE_URL;
+const mongoString =
+  "mongodb+srv://fadhilelrizandamicr:xU4xokwD6X2Xi6Gn@cluster0.h4v4j79.mongodb.net/";
 
-const app = express();
-const PORT = 4000;
+mongoose.connect(mongoString);
+const database = mongoose.connection;
 
-app.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT} `);
+database.on("error", (error) => {
+  console.log(error);
 });
+
+database.once("connected", () => {
+  console.log("Database Connected");
+});
+const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hey this is my API running 🥳");
+  res.send("Express on Vercel");
 });
 
-app.get("/about", (req, res) => {
-  res.send("This is my about route..... ");
+app.use(express.json());
+// const routes = require("./rout es/routes");
+app.use("/chicken", chicken);
+app.use("/api", routes);
+app.listen(5000, () => {
+  console.log(`Server Started at ${5000}`);
 });
 
-// Export the Express API
 module.exports = app;
