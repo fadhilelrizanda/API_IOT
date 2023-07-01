@@ -22,10 +22,10 @@ app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
 
-// app.use(express.json());
+app.use(express.json());
 // const routes = require("./rout es/routes");
-// app.use("/chicken", chicken);
-// app.use("/api", routes);
+app.use("/chicken", chicken);
+app.use("/api", routes);
 app.listen(5000, () => {
   console.log(`Server Started at ${5000}`);
 });
