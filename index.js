@@ -2,9 +2,7 @@ const routes = require("./routes/routes");
 const chicken = require("./routes/chicken");
 const express = require("express");
 const mongoose = require("mongoose");
-// const mongoString = process.env.DATABASE_URL;
-const mongoString =
-  "mongodb+srv://fadhilelrizandamicr:xU4xokwD6X2Xi6Gn@cluster0.h4v4j79.mongodb.net/";
+const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
