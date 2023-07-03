@@ -7,6 +7,11 @@ const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
+const cors = require("cors");
+
+//use cors
+app.use(cors());
+
 database.on("error", (error) => {
   console.log(error);
 });
