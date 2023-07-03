@@ -3,14 +3,12 @@ const chicken = require("./routes/chicken");
 const express = require("express");
 const mongoose = require("mongoose");
 const mongoString = process.env.DATABASE_URL;
-
-mongoose.connect(mongoString);
-const database = mongoose.connection;
-
 const cors = require("cors");
 
 //use cors
-app.use(cors());
+
+mongoose.connect(mongoString);
+const database = mongoose.connection;
 
 database.on("error", (error) => {
   console.log(error);
@@ -26,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
+app.use(cors());
 // const routes = require("./rout es/routes");
 app.use("/chicken", chicken);
 app.use("/api", routes);
