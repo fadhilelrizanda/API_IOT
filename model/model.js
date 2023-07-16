@@ -1,47 +1,49 @@
 const mongoose = require("mongoose");
 
-const dataSchema = new mongoose.Schema({
-  name: {
-    required: true,
-    type: String,
+const peopleDetectSchema = new mongoose.Schema(
+  {
+    total: {
+      required: true,
+      type: Number,
+    },
   },
-  age: {
-    required: true,
-    type: Number,
-  },
-});
+  { timestamps: true }
+);
 
-const chickenSchema = new mongoose.Schema({
-  condition: {
-    required: true,
-    type: Number,
+const chickenSchema = new mongoose.Schema(
+  {
+    condition: {
+      required: true,
+      type: Number,
+    },
+    relay1: {
+      required: true,
+      type: Number,
+    },
+    relay2: {
+      required: true,
+      type: Number,
+    },
+    relay3: {
+      required: true,
+      type: Number,
+    },
+    startTime: {
+      required: true,
+      type: Number,
+    },
+    endTime: {
+      required: true,
+      type: Number,
+    },
   },
-  relay1: {
-    required: true,
-    type: Number,
-  },
-  relay2: {
-    required: true,
-    type: Number,
-  },
-  relay3: {
-    required: true,
-    type: Number,
-  },
-  startTime: {
-    required: true,
-    type: Number,
-  },
-  endTime: {
-    required: true,
-    type: Number,
-  },
-});
+  { timestamps: true }
+);
 
-const dataModel = mongoose.model("Data", dataSchema);
+const peopleDetectModel = mongoose.model("PeopleDetect", peopleDetectSchema);
 const chickenModel = mongoose.model("Chicken", chickenSchema);
 
 module.exports = {
-  dataModel,
+  peopleDetectModel,
   chickenModel,
 };

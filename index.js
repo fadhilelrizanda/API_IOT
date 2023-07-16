@@ -1,11 +1,10 @@
 const routes = require("./routes/routes");
 const chicken = require("./routes/chicken");
+const classRoutes = require("./routes/class");
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const mongoString = process.env.DATABASE_URL;
-const cors = require("cors");
-
-//use cors
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -24,10 +23,10 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
-app.use(cors());
 // const routes = require("./rout es/routes");
 app.use("/chicken", chicken);
 app.use("/api", routes);
+app.use("/class", classRoutes);
 app.listen(5000, () => {
   console.log(`Server Started at ${5000}`);
 });
