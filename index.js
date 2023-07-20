@@ -9,6 +9,8 @@ const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
+const cors = require("cors");
+
 database.on("error", (error) => {
   console.log(error);
 });
@@ -17,6 +19,7 @@ database.once("connected", () => {
   console.log("Database Connected");
 });
 const app = express();
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
